@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #c9aafa;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.example.jdbclogin.TableViewController">
+    <TableView fx:id="tableData" style="-fx-background-color: #c9aafa;">
+        <!-- Define las columnas aquí si es necesario -->
+    </TableView>
+
+    <!-- Contenedor HBox para los botones -->
+    <HBox alignment="TOP_CENTER" spacing="10.0">
+        <Button onAction="#onBackButtonClick" text="Back" />
+        <Button fx:id="exportToCSVButton" onAction="#exportToCSV" text="Export to CSV" />
+        <Button fx:id="exportToXMLButton" onAction="#exportToXML" text="Export to XML" />
+      <VBox.margin>
+         <Insets bottom="15.0" top="-15.0" />
+      </VBox.margin>
+    </HBox>
+</VBox>
