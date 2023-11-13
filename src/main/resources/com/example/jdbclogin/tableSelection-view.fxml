@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.example.jdbclogin.TableSelectionController" style="-fx-background-color: #c9aafa;">
+   <Label text="NorthWind">
+      <textFill>
+         <LinearGradient endX="1.0" endY="1.0">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="0.1926315724849701" green="0.7316315770149231" blue="0.8526315689086914" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.07783235609531403" green="0.05801169574260712" blue="0.6526315808296204" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font size="44.0" />
+      </font>
+   </Label>
+    <Label text="Select a table" />
+    <ComboBox fx:id="tableComboBox" prefWidth="200" />
+    <Button onAction="#onTableSelection" text="Next" />
+</VBox>
