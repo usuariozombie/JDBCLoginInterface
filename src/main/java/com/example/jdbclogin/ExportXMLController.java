@@ -25,6 +25,8 @@ public class ExportXMLController {
      * Exporta los datos de un TableView a un archivo XML.
      *
      * @param tableView TableView que contiene los datos a exportar.
+     * @param databaseConnection Conexión a la base de datos.
+     * @param tableName Nombre de la tabla a exportar.
      */
     public static void exportToXML(TableView<ObservableList<String>> tableView, Connection databaseConnection, String tableName) {
         // Configurar el selector de archivos
