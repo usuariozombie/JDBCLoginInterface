@@ -2,7 +2,6 @@ package com.example.jdbclogin;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
@@ -94,10 +93,9 @@ public class TableViewController {
      * Método llamado al hacer clic en el botón de exportar a CSV.
      * Llama al método de ExportCSVController para exportar los datos de la tabla actual a un archivo CSV.
      *
-     * @param event El evento de clic en el botón.
      */
     @FXML
-    private void exportToCSV(ActionEvent event) {
+    private void exportToCSV() {
         ExportCSVController.exportToCSV(tableData);
     }
 
@@ -105,10 +103,11 @@ public class TableViewController {
      * Método llamado al hacer clic en el botón de exportar a XML.
      * Llama al método de ExportXMLController para exportar los datos de la tabla actual a un archivo XML.
      *
-     * @param event El evento de clic en el botón.
      */
     @FXML
-    private void exportToXML(ActionEvent event) {
-        ExportXMLController.exportToXML(tableData);
+    private void exportToXML() {
+        Connection databaseConnection = LoginApplication.getDatabaseConnection();
+        String tableName = LoginApplication.getSelectedTable();
+        ExportXMLController.exportToXML(tableData, databaseConnection, tableName);
     }
 }
