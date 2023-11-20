@@ -49,7 +49,7 @@ public class ExportCSVController {
 
                 // Escribir los datos de la tabla en el archivo CSV
                 for (ObservableList<String> row : tableView.getItems()) {
-                    String[] rowData = row.stream().toArray(String[]::new);
+                    String[] rowData = row.toArray(String[]::new);
                     csvWriter.writeNext(rowData);
                 }
             } catch (IOException e) {
