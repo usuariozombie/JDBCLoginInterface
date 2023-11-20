@@ -4,11 +4,13 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import com.opencsv.CSVWriter;
+import com.opencsv.CSVWriterBuilder;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 
 /**
  * Clase que proporciona métodos para exportar datos de un TableView a un archivo CSV.
@@ -19,7 +21,7 @@ import java.io.IOException;
 public class ExportCSVController {
 
     /**
-     * Exporta los datos de un TableView a un archivo CSV.
+     * Exporta los datos de un TableView a un archivo CSV con punto y coma como delimitador.
      *
      * @param tableView TableView que contiene los datos a exportar.
      */
@@ -31,7 +33,11 @@ public class ExportCSVController {
 
         // Verificar si se seleccionó un archivo
         if (selectedFile != null) {
-            try (CSVWriter writer = new CSVWriter(new FileWriter(selectedFile))) {
+            try (Writer writer = new FileWriter(selectedFile);
+                 CSVWriter csvWriter = (CSVWriter) new CSVWriterBuilder(writer)
+                         .withSeparator(';') // Establecer el delimitador como punto y coma
+                         .build()) {
+
                 // Obtener las columnas de la tabla
                 ObservableList<TableColumn<ObservableList<String>, ?>> columns = tableView.getColumns();
 
@@ -39,12 +45,12 @@ public class ExportCSVController {
                 String[] headers = columns.stream()
                         .map(TableColumn::getText)
                         .toArray(String[]::new);
-                writer.writeNext(headers);
+                csvWriter.writeNext(headers);
 
                 // Escribir los datos de la tabla en el archivo CSV
                 for (ObservableList<String> row : tableView.getItems()) {
                     String[] rowData = row.stream().toArray(String[]::new);
-                    writer.writeNext(rowData);
+                    csvWriter.writeNext(rowData);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
