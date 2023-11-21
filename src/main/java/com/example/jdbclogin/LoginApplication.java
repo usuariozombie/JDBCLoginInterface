@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Objects;
 
 /**
@@ -52,6 +53,25 @@ public class LoginApplication extends Application {
         stage.setTitle("NorthWind Database Login");
         stage.setScene(scene);
         stage.show();
+    }
+
+    /**
+     * Método para cerrar la conexión a la base de datos al cerrar la aplicación.
+     */
+    @Override
+    public void stop() {
+        // Obtén la conexión a la base de datos
+        Connection connection = getDatabaseConnection();
+
+        // Intenta cerrar la conexión si no es nula
+        if (connection != null) {
+            try {
+                connection.close(); // Cierra la conexión
+                System.out.println("Database connection closed."); // Mensaje para confirmar el cierre
+            } catch (SQLException e) {
+                System.out.println("Error while closing the database connection: " + e.getMessage());
+            }
+        }
     }
 
     /**
